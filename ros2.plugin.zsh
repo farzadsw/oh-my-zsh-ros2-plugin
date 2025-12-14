@@ -1,6 +1,7 @@
 # Check if fzf is installed
 if ! command -v fzf &> /dev/null; then
-    echo "The command 'fzf' is not installed. Please install it to use the OMZSH ros2 plugin."
+    echo "The command 'fzf' is not installed or found. Please install it to use the OMZSH ros2 plugin.
+If fzf is already installed, make sure it is sourced before oh-my-zsh at .zshrc : \"[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh\" "
     return
 fi
 
