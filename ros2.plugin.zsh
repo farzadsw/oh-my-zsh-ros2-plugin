@@ -5,15 +5,16 @@ If fzf is already installed, make sure it is sourced before oh-my-zsh at .zshrc 
     return
 fi
 
-alias rtlist="ros2 topic list | fzf"
+alias rtlist="ros2 topic list | fzf --preview 'ros2 topic info {1}'"
 
 _ros2_select_topic() {
     local prompt=$1
-    ros2 topic list | fzf --height 40% --prompt="$prompt"
+    local command=$2
+    ros2 topic list | fzf --prompt="$prompt" --preview "ros2 topic $command {1}"
 }
 
 rtecho() {
-    local selected_topic=$(_ros2_select_topic "Select Topic to Echo > ")
+    local selected_topic=$(_ros2_select_topic "Select Topic to Echo > " "echo")
     if [[ -n "$selected_topic" ]]; then
         ros2 topic echo "$selected_topic"
     else
@@ -22,7 +23,7 @@ rtecho() {
 }
 
 rthz() {
-    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Hz > ")
+    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Hz > " "hz")
     if [[ -n "$selected_topic" ]]; then
         ros2 topic hz "$selected_topic"
     else
@@ -31,7 +32,7 @@ rthz() {
 }
 
 rtbw() {
-    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Bw > ")
+    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Bw > " "bw")
     if [[ -n "$selected_topic" ]]; then
         ros2 topic bw "$selected_topic"
     else
@@ -40,7 +41,7 @@ rtbw() {
 }
 
 rtinfo() {
-    local selected_topic=$(_ros2_select_topic "Select Topic to Check > ")
+    local selected_topic=$(_ros2_select_topic "Select Topic to Check > " "info -v")
     if [[ -n "$selected_topic" ]]; then
         echo "$selected_topic"
         ros2 topic info -v "$selected_topic"
@@ -50,7 +51,7 @@ rtinfo() {
 }
 
 rtdelay() {
-    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Delay > ")
+    local selected_topic=$(_ros2_select_topic "Select Topic to Measure Delay > " "delay")
     if [[ -n "$selected_topic" ]]; then
         ros2 topic delay "$selected_topic"
     else
@@ -62,7 +63,7 @@ alias rnlist="ros2 node list | fzf"
 
 _ros2_select_node() {
     local prompt=$1
-    ros2 node list | fzf --prompt="$prompt"
+    ros2 node list | fzf --prompt="$prompt" --preview 'ros2 node info {1}'
 }
 
 rninfo() {
