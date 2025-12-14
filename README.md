@@ -18,16 +18,16 @@ Before installing this plugin, please ensure you have the following dependencies
     Clone this repository into your Oh My Zsh custom plugins directory.
 
     ```sh
-    git clone https://github.com/farzadsw/oh-my-zsh-ros2-plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/ros2-plugin
+    git clone https://github.com/farzadsw/oh-my-zsh-ros2-plugin.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/ros2
     ```
 
 2.  **Activate the plugin:**
-    Add `ros2-plugin` to the `plugins` array in your `~/.zshrc` file.
+    Add `ros2` to the `plugins` array in your `~/.zshrc` file.
 
     ```zsh
     plugins=(
         # other plugins...
-        ros2-plugin
+        ros2
     )
     ```
 

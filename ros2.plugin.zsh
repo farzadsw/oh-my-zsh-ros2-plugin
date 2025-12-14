@@ -1,6 +1,6 @@
 # Check if fzf is installed
 if ! command -v fzf &> /dev/null; then
-    echo "The command 'fzf' is not installed. Please install it to use all features of the ros2-plugin."
+    echo "The command 'fzf' is not installed. Please install it to use the OMZSH ros2 plugin."
     return
 fi
 
