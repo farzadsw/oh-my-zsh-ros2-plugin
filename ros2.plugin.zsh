@@ -59,7 +59,7 @@ rtdelay() {
     fi
 }
 
-alias rnlist="ros2 node list | fzf"
+alias rnlist="ros2 node list | fzf --preview 'ros2 node info {1}'"
 
 _ros2_select_node() {
     local prompt=$1
