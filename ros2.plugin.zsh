@@ -16,7 +16,11 @@ _ros2_select_topic() {
 rtecho() {
     local selected_topic=$(_ros2_select_topic "Select Topic to Echo > " "echo")
     if [[ -n "$selected_topic" ]]; then
-        ros2 topic echo "$selected_topic"
+        local full_cmd="ros2 topic echo $selected_topic"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Topic selection cancelled."
     fi
@@ -25,7 +29,11 @@ rtecho() {
 rthz() {
     local selected_topic=$(_ros2_select_topic "Select Topic to Measure Hz > " "hz")
     if [[ -n "$selected_topic" ]]; then
-        ros2 topic hz "$selected_topic"
+        local full_cmd="ros2 topic hz $selected_topic"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Topic selection cancelled."
     fi
@@ -34,7 +42,11 @@ rthz() {
 rtbw() {
     local selected_topic=$(_ros2_select_topic "Select Topic to Measure Bw > " "bw")
     if [[ -n "$selected_topic" ]]; then
-        ros2 topic bw "$selected_topic"
+        local full_cmd="ros2 topic bw $selected_topic"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Topic selection cancelled."
     fi
@@ -43,8 +55,11 @@ rtbw() {
 rtinfo() {
     local selected_topic=$(_ros2_select_topic "Select Topic to Check > " "info -v")
     if [[ -n "$selected_topic" ]]; then
-        echo "$selected_topic"
-        ros2 topic info -v "$selected_topic"
+        local full_cmd="ros2 topic info -v $selected_topic"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Topic selection cancelled."
     fi
@@ -53,7 +68,11 @@ rtinfo() {
 rtdelay() {
     local selected_topic=$(_ros2_select_topic "Select Topic to Measure Delay > " "delay")
     if [[ -n "$selected_topic" ]]; then
-        ros2 topic delay "$selected_topic"
+        local full_cmd="ros2 topic delay $selected_topic"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Topic selection cancelled."
     fi
@@ -67,10 +86,13 @@ _ros2_select_node() {
 }
 
 rninfo() {
-	local selected_node=$(_ros2_select_node "Select Node to Check > ")
-	if [[ -n "$selected_node" ]]; then
-        echo "$selected_node"
-        ros2 node info "$selected_node"
+    local selected_node=$(_ros2_select_node "Select Node to Check > ")
+    if [[ -n "$selected_node" ]]; then
+        local full_cmd="ros2 node info $selected_node"
+        # This pushes the command to your bash history
+        print -s "$full_cmd"
+        echo "Running: $full_cmd"
+        eval "$full_cmd"
     else
         echo "Node selection cancelled."
     fi
